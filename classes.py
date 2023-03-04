@@ -72,3 +72,40 @@ class ButtonWord:
         self.btn_28.place(x=75, y=167)
         self.btn_29.place(x=110, y=167)
         self.btn_30.place(x=145, y=167)
+
+    def __add_command_button(self):
+        """Назначить действие кнопке"""
+        self.btn_1.config(command=lambda btn=self.btn_1: self.__choise_field(btn))
+        self.btn_2.config(command=lambda btn=self.btn_2: self.__choise_field(btn))
+        self.btn_3.config(command=lambda btn=self.btn_3: self.__choise_field(btn))
+        self.btn_4.config(command=lambda btn=self.btn_4: self.__choise_field(btn))
+        self.btn_5.config(command=lambda btn=self.btn_5: self.__choise_field(btn))
+        self.btn_6.config(command=lambda btn=self.btn_6: self.__choise_field(btn))
+        self.btn_7.config(command=lambda btn=self.btn_7: self.__choise_field(btn))
+        self.btn_8.config(command=lambda btn=self.btn_8: self.__choise_field(btn))
+        self.btn_9.config(command=lambda btn=self.btn_9: self.__choise_field(btn))
+        self.btn_10.config(command=lambda btn=self.btn_10: self.__choise_field(btn))
+        self.btn_11.config(command=lambda btn=self.btn_11: self.__choise_field(btn))
+        self.btn_12.config(command=lambda btn=self.btn_12: self.__choise_field(btn))
+        self.btn_13.config(command=lambda btn=self.btn_13: self.__choise_field(btn))
+        self.btn_14.config(command=lambda btn=self.btn_14: self.__choise_field(btn))
+        self.btn_15.config(command=lambda btn=self.btn_15: self.__choise_field(btn))
+        self.btn_16.config(command=lambda btn=self.btn_16: self.__choise_field(btn))
+        self.btn_17.config(command=lambda btn=self.btn_17: self.__choise_field(btn))
+        self.btn_18.config(command=lambda btn=self.btn_18: self.__choise_field(btn))
+        self.btn_19.config(command=lambda btn=self.btn_19: self.__choise_field(btn))
+        self.btn_20.config(command=lambda btn=self.btn_20: self.__choise_field(btn))
+        self.btn_21.config(command=lambda btn=self.btn_21: self.__choise_field(btn))
+        self.btn_22.config(command=lambda btn=self.btn_22: self.__choise_field(btn))
+        self.btn_23.config(command=lambda btn=self.btn_23: self.__choise_field(btn))
+        self.btn_24.config(command=lambda btn=self.btn_24: self.__choise_field(btn))
+        self.btn_25.config(command=lambda btn=self.btn_25: self.__choise_field(btn))
+        self.btn_26.config(command=lambda btn=self.btn_26: self.__choise_field(btn))
+        self.btn_27.config(command=lambda btn=self.btn_27: self.__choise_field(btn))
+        self.btn_28.config(command=lambda btn=self.btn_28: self.__choise_field(btn))
+        self.btn_29.config(command=lambda btn=self.btn_29: self.__choise_field(btn))
+        self.btn_30.config(command=lambda btn=self.btn_30: self.__choise_field(btn))
+
+    def __choise_field(self, btn):
+        """выбор поля для ввода"""
+        self.classes_key = btn
