@@ -42,3 +42,14 @@ def create_scrolledtext(frame_1):
 
     listbox.place(x=200, y=3)
     return listbox
+
+
+def create_entry(frame_2):
+    """
+    Создание поля ввода слова
+    :param frame_2: фрейм для отображения
+    :return: поле ввода слова
+    """
+    entry = tk.Entry(frame_2, width=10)
+
+    entry.place(x=50, y=40)
