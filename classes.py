@@ -37,8 +37,12 @@ class ButtonWord:
         self.btn_28 = Button(frame_1, height=1, width=1, padx=10, pady=4)
         self.btn_29 = Button(frame_1, height=1, width=1, padx=10, pady=4)
         self.btn_30 = Button(frame_1, height=1, width=1, padx=10, pady=4)
+        # кнопка выбора цвета
+        self.btn_31 = Button(frame_1, height=1, width=1, padx=10, pady=4, bg='yellow')
+        self.btn_32 = Button(frame_1, height=1, width=1, padx=10, pady=4, bg='green')
 
         self.__draw_field()
+        self.__add_command_button()
 
     def __draw_field(self):
         """отрисовать поле для ввода"""
@@ -72,6 +76,8 @@ class ButtonWord:
         self.btn_28.place(x=75, y=167)
         self.btn_29.place(x=110, y=167)
         self.btn_30.place(x=145, y=167)
+        self.btn_31.place(x=5, y=200)
+        self.btn_32.place(x=40, y=200)
 
     def __add_command_button(self):
         """Назначить действие кнопке"""
@@ -105,7 +111,14 @@ class ButtonWord:
         self.btn_28.config(command=lambda btn=self.btn_28: self.__choise_field(btn))
         self.btn_29.config(command=lambda btn=self.btn_29: self.__choise_field(btn))
         self.btn_30.config(command=lambda btn=self.btn_30: self.__choise_field(btn))
+        self.btn_31.config(command=lambda btn=self.btn_31: self.__change_color(btn))
+        self.btn_32.config(command=lambda btn=self.btn_32: self.__change_color(btn))
 
     def __choise_field(self, btn):
         """выбор поля для ввода"""
         self.classes_key = btn
+
+    def __change_color(self, btn):
+        """сменить цвет кнопки"""
+        color_button = btn.cget('bg')
+        self.classes_key.config(bg=color_button)
