@@ -1,8 +1,10 @@
 from tkinter import Button
+from utils import get_text
 
 
 class ButtonWord:
     def __init__(self, frame_1, frame_2, entry):
+        self.slovar = None
         self.entry = entry
         """
         Инициализация кнопок
@@ -43,6 +45,9 @@ class ButtonWord:
         self.btn_32 = Button(frame_1, height=1, width=1, padx=10, pady=4, bg='green')
         # кнопка ввода слова
         self.btn_33 = Button(frame_2, height=1, width=1, padx=20, pady=1, text='Ввод')
+        # кнопка вывода слов в форму
+        self.btn_34 = Button(frame_1, height=1, width=5, padx=10, pady=4, text='Check')
+
 
         self.__draw_field()
         self.__add_command_button()
@@ -82,6 +87,7 @@ class ButtonWord:
         self.btn_31.place(x=5, y=200)
         self.btn_32.place(x=40, y=200)
         self.btn_33.place(x=150, y=40)
+        self.btn_34.place(x=200, y=200)
 
     def __add_command_button(self):
         """Назначить действие кнопке"""
@@ -118,6 +124,7 @@ class ButtonWord:
         self.btn_31.config(command=lambda btn=self.btn_31: self.__change_color(btn))
         self.btn_32.config(command=lambda btn=self.btn_32: self.__change_color(btn))
         self.btn_33.config(command=lambda: self.__write_word())
+        self.btn_34.config(command=lambda btn=self.btn_34: self.__check_letter_in_word())
 
     def __choise_field(self, btn):
         """выбор поля для ввода"""
@@ -145,3 +152,9 @@ class ButtonWord:
             print("Введите слово из 5 букв")
         else:
             return text.lower()
+
+    def load_word(self):
+        """Загрузить слова"""
+        a = get_text(file_name='new_rus.txt')
+        self.slovar = a
+        print(self.slovar)
