@@ -3,13 +3,15 @@ from utils import get_text
 
 
 class ButtonWord:
-    def __init__(self, frame_1, frame_2, entry):
-        self.slovar = None
-        self.entry = entry
+    def __init__(self, frame_1, frame_2, entry, listbox):
         """
         Инициализация кнопок
         :param frame_1: Фрейм для отображения
         """
+        self.slovar = None
+        self.entry = entry
+        self.listbox = listbox
+
         self.btn_1 = Button(frame_1, height=1, width=1, padx=10, pady=4)
         self.btn_2 = Button(frame_1, height=1, width=1, padx=10, pady=4)
         self.btn_3 = Button(frame_1, height=1, width=1, padx=10, pady=4)
@@ -47,7 +49,6 @@ class ButtonWord:
         self.btn_33 = Button(frame_2, height=1, width=1, padx=20, pady=1, text='Ввод')
         # кнопка вывода слов в форму
         self.btn_34 = Button(frame_1, height=1, width=5, padx=10, pady=4, text='Check')
-
 
         self.__draw_field()
         self.__add_command_button()
@@ -155,6 +156,89 @@ class ButtonWord:
 
     def load_word(self):
         """Загрузить слова"""
-        a = get_text(file_name='new_rus.txt')
-        self.slovar = a
-        print(self.slovar)
+        self.slovar = get_text(file_name='new_rus.txt')
+
+    def __check_letter_in_word(self):
+        """Достать слова из словаря с совпадающими буквами"""
+        self.listbox.delete(1.0, 'end')
+        self.load_word()
+        slovar_green = ['', '', '', '', '']
+        slovar_yellow = ['', '', '', '', '']
+        set_list = []
+        first = []
+        second = []
+        true = []
+        four = []
+        five = []
+
+        if self.btn_1.cget('bg') == 'green':
+            slovar_green[0] = (self.btn_1.cget('text'))
+        elif self.btn_1.cget('bg') == 'yellow':
+            slovar_yellow[0] = (self.btn_1.cget('text'))
+
+        if self.btn_2.cget('bg') == 'green':
+            slovar_green[1] = (self.btn_2.cget('text'))
+        elif self.btn_2.cget('bg') == 'yellow':
+            slovar_yellow[1] = (self.btn_2.cget('text'))
+
+        if self.btn_3.cget('bg') == 'green':
+            slovar_green[2] = (self.btn_3.cget('text'))
+        elif self.btn_3.cget('bg') == 'yellow':
+            slovar_yellow[2] = (self.btn_3.cget('text'))
+
+        if self.btn_4.cget('bg') == 'green':
+            slovar_green[3] = (self.btn_4.cget('text'))
+        elif self.btn_4.cget('bg') == 'yellow':
+            slovar_yellow[3] = (self.btn_4.cget('text'))
+
+        if self.btn_5.cget('bg') == 'green':
+            slovar_green[4] = (self.btn_5.cget('text'))
+        elif self.btn_5.cget('bg') == 'yellow':
+            slovar_yellow[4] = (self.btn_5.cget('text'))
+
+        for i in self.slovar:
+            if slovar_green[0] != '' and slovar_green[0] == i[0]:
+                first.append(i)
+            if slovar_green[1] != '' and slovar_green[1] == i[1]:
+                second.append(i)
+            if slovar_green[2] != '' and slovar_green[2] == i[2]:
+                true.append(i)
+            if slovar_green[3] != '' and slovar_green[3] == i[3]:
+                four.append(i)
+            if slovar_green[4] != '' and slovar_green[4] == i[4]:
+                five.append(i)
+
+        set_first = set(first)
+        set_second = set(second)
+        set_true = set(true)
+        set_four = set(four)
+        set_five = set(five)
+
+        count = 0
+
+        if len(set_first) > 0:
+            set_list.append(set_first)
+            count += 1
+        if len(set_second) > 0:
+            set_list.append(set_second)
+            count += 1
+        if len(set_true) > 0:
+            set_list.append(set_true)
+            count += 1
+        if len(set_four) > 0:
+            set_list.append(set_four)
+            count += 1
+        if len(set_five) > 0:
+            set_list.append(set_five)
+            count += 1
+
+        if count == 1:
+            result_list = set_first.union(*set_list)
+            for i in result_list:
+                self.listbox.insert(1.0, i)
+
+        if count > 1:
+            result_list = set_first.union(*set_list)
+            result = result_list.intersection(*set_list)
+            for i in result:
+                self.listbox.insert(1.0, i)
