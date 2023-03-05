@@ -54,3 +54,12 @@ def create_entry(frame_2):
 
     entry.place(x=50, y=40)
     return entry
+
+
+def get_text(file_name):
+    """получить слова из словаря"""
+    list_word = []
+    with open(file_name, 'r', encoding="UTF-8") as file:
+        for i in file:
+            list_word.append(i)
+    return list_word
