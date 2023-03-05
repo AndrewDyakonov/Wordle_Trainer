@@ -2,7 +2,8 @@ from tkinter import Button
 
 
 class ButtonWord:
-    def __init__(self, frame_1):
+    def __init__(self, frame_1, frame_2, entry):
+        self.entry = entry
         """
         Инициализация кнопок
         :param frame_1: Фрейм для отображения
@@ -40,6 +41,8 @@ class ButtonWord:
         # кнопка выбора цвета
         self.btn_31 = Button(frame_1, height=1, width=1, padx=10, pady=4, bg='yellow')
         self.btn_32 = Button(frame_1, height=1, width=1, padx=10, pady=4, bg='green')
+        # кнопка ввода слова
+        self.btn_33 = Button(frame_2, height=1, width=1, padx=20, pady=1, text='Ввод')
 
         self.__draw_field()
         self.__add_command_button()
@@ -78,6 +81,7 @@ class ButtonWord:
         self.btn_30.place(x=145, y=167)
         self.btn_31.place(x=5, y=200)
         self.btn_32.place(x=40, y=200)
+        self.btn_33.place(x=150, y=40)
 
     def __add_command_button(self):
         """Назначить действие кнопке"""
@@ -113,6 +117,7 @@ class ButtonWord:
         self.btn_30.config(command=lambda btn=self.btn_30: self.__choise_field(btn))
         self.btn_31.config(command=lambda btn=self.btn_31: self.__change_color(btn))
         self.btn_32.config(command=lambda btn=self.btn_32: self.__change_color(btn))
+        self.btn_33.config(command=lambda: self.__write_word())
 
     def __choise_field(self, btn):
         """выбор поля для ввода"""
@@ -122,3 +127,21 @@ class ButtonWord:
         """сменить цвет кнопки"""
         color_button = btn.cget('bg')
         self.classes_key.config(bg=color_button)
+
+    def __write_word(self):
+        """Записать введенное слово в ячейки"""
+        text = self.__get_text()
+        self.entry.delete(0, "end")
+        self.btn_1.config(text=text[0])
+        self.btn_2.config(text=text[1])
+        self.btn_3.config(text=text[2])
+        self.btn_4.config(text=text[3])
+        self.btn_5.config(text=text[4])
+
+    def __get_text(self):
+        """Вернуть текст набранный в поле ввода"""
+        text = self.entry.get()
+        if len(text) != 5:
+            print("Введите слово из 5 букв")
+        else:
+            return text.lower()

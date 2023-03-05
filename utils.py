@@ -53,3 +53,4 @@ def create_entry(frame_2):
     entry = tk.Entry(frame_2, width=10)
 
     entry.place(x=50, y=40)
+    return entry
