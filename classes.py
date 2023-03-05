@@ -52,6 +52,7 @@ class ButtonWord:
 
         self.__draw_field()
         self.__add_command_button()
+        self.slovar = get_text(file_name='new_rus.txt')
 
     def __draw_field(self):
         """отрисовать поле для ввода"""
@@ -154,14 +155,9 @@ class ButtonWord:
         else:
             return text.lower()
 
-    def load_word(self):
-        """Загрузить слова"""
-        self.slovar = get_text(file_name='new_rus.txt')
-
     def __check_letter_in_word(self):
         """Достать слова из словаря с совпадающими буквами"""
         self.listbox.delete(1.0, 'end')
-        self.load_word()
         slovar_green = ['', '', '', '', '']
         slovar_yellow = ['', '', '', '', '']
         set_list = []
