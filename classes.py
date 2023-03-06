@@ -1,5 +1,6 @@
 from tkinter import Button
 from utils import get_text
+from valid import UserText
 
 
 class ButtonWord:
